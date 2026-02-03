@@ -2,6 +2,7 @@ import commands2
 import math
 from commands2 import button
 from subsystems.drivesubsystem import DriveSubsystem
+from subsystems.limelight_camera import LimelightCamera
 from wpilib import DriverStation, Timer
 from helpers.custom_hid import CustomHID
 from helpers.pose_estimator import PoseEstimator
@@ -21,6 +22,7 @@ class RobotContainer:
         self.timer.start()
         self.pose_estimator = PoseEstimator()
         self.robot_drive = DriveSubsystem(self.timer, self.pose_estimator)
+        self.camera = LimelightCamera("limelight-pickup")
 
         # Setup driver & operator controllers.
         self.driver_controller_raw = CustomHID(0, "xbox")
@@ -87,3 +89,12 @@ class RobotContainer:
                 self.driver_controller_raw.get_axis_squared("LX", 0.06) * 5.06,
                 300
             ), self.robot_drive))
+        """
+        button.Trigger(lambda: self.driver_controller_raw.get_button("A")).whileTrue(
+            x = self.camera.getX()
+            print(f"CameraX: {x}")
+            turn_speed = -0.005 * x
+
+            )
+        """
+    
