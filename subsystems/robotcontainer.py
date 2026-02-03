@@ -97,4 +97,14 @@ class RobotContainer:
 
             )
         """
+        def turn_to_object():
+            x = self.camera.getX()
+            print(f"x={x}")
+            turn_speed = -0.005 * x
+            self.robotDrive.rotate(turn_speed)
+            # if you want your robot to slowly chase that object... replace this line above with: self.robotDrive.arcadeDrive(0.1, turn_speed)
+
+        bButton = self.driverController_raw.get_button("A")
+        bButton.whileTrue(commands2.RunCommand(turn_to_object, self.robotDrive))
+        bButton.onFalse(commands2.InstantCommand(lambda: self.robotDrive.drive(0, 0, 0, False, False)))
     
