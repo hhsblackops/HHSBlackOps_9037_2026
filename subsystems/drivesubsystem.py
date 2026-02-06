@@ -513,14 +513,14 @@ class DriveSubsystem(commands2.Subsystem):
         rotate_output = self.turret_controller.calculate(heading_target, current_heading)
         self.clt_target = current_heading
         self.drive_2ok(x_speed, y_speed, rotate_output, True)
-
+    """
     def rotate(self, rotSpeed) -> None:
-        """
+        
         Rotate the robot in place, without moving laterally (for example, for aiming)
         :param speed: rotation speed 
-        """
+        
         self.drive(0, rotSpeed)
-
+    """
     def get_current_draw_all_modules(self) -> list[tuple[float, float]]:
         """Returns the current draws for each swerve module as a list."""
         return [

@@ -22,7 +22,7 @@ class RobotContainer:
         self.timer.start()
         self.pose_estimator = PoseEstimator()
         self.robot_drive = DriveSubsystem(self.timer, self.pose_estimator)
-        self.camera = LimelightCamera("limelight-pickup")
+        #self.camera = LimelightCamera("limelight-pickup")
 
         # Setup driver & operator controllers.
         self.driver_controller_raw = CustomHID(0, "xbox")
@@ -41,8 +41,21 @@ class RobotContainer:
 
         # Setup for all event-trigger commands.
         self.configureTriggersDefault()
-
-
+    
+    def build_auto_command(self) -> commands2.Command:
+        # Example: drive forward for 2 seconds, then stop
+        return (
+            commands2.cmd.run(
+                lambda: self.robot_drive.drive_2ok(1.5, 0.0, 0.0, True),  # forward m/s-ish (depends on your implementation)
+                self.robot_drive
+            )
+            .withTimeout(2.0)
+            .andThen(commands2.cmd.runOnce(
+                lambda: self.robot_drive.drive_2ok(0.0, 0.0, 0.0, True),
+                self.robot_drive
+            ))
+        )
+    
     def configureTriggersDefault(self) -> None:
         """Used to set up any commands that trigger when a measured event occurs."""
         button.Trigger(lambda: DriverStation.isTeleopEnabled()).onTrue(
@@ -97,6 +110,7 @@ class RobotContainer:
 
             )
         """
+        """
         def turn_to_object():
             x = self.camera.getX()
             print(f"x={x}")
@@ -107,4 +121,4 @@ class RobotContainer:
         bButton = button.Trigger(lambda: self.driver_controller_raw.get_button("B"))
         bButton.whileTrue(commands2.RunCommand(turn_to_object, self.robot_drive))
         bButton.onFalse(commands2.InstantCommand(lambda: self.robot_drive.drive(0, 0, 0, False, False)))
-    
+        """

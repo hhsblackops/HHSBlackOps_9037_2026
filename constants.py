@@ -85,7 +85,7 @@ class ModuleConstants:
     fr_turn_id = 9
     # Was 4
     fr_encoder_id = 2
-    fr_zero_offset = 194.63/360
+    fr_zero_offset = 58.36/360
     #2nd Time Gave out 205.95
     #Gave out 331.47
     #Was -223.33 on old robot
@@ -96,7 +96,7 @@ class ModuleConstants:
     fl_turn_id = 3
     # Was 16
     fl_encoder_id = 3
-    fl_zero_offset = 351.55/360
+    fl_zero_offset = 171.82/360
     #2nd Time gave out 180.85
     #Gave out 177.69
     #Was -248.91 on old robot
@@ -107,7 +107,7 @@ class ModuleConstants:
     br_turn_id = 7
     # Was 3
     br_encoder_id = 1
-    br_zero_offset = 148.53/360
+    br_zero_offset = 42.50/360
     #2nd time gave us 318.87
     #It gave us 280.96
     #Was -53.53
@@ -118,7 +118,7 @@ class ModuleConstants:
     bl_turn_id = 5
     # Was 2
     bl_encoder_id = 0
-    bl_zero_offset = 183.60/360
+    bl_zero_offset = 150.61/360
     #2nd Time Gave out 29.4
     #It gave us 280.96
     #Was -202.85

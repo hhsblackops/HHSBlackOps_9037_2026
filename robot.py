@@ -31,15 +31,9 @@ class Robot(TimedCommandRobot):
 
     def autonomousInit(self) -> None:
         """Run the auto scheduler if the command was actually input. For the most part, this is a safety call."""
-        #self.m_autonomous_command = self.m_robotcontainer.getAutonomousCommand()
+        if self.m_autonomous_command is not None:
+            self.m_autonomous_command.schedule()
 
-        #if self.m_autonomous_command is not None:
-            #self.m_autonomous_command.schedule()
-
-        #self.m_timer.reset()
-        #self.m_timer.start()
-
-        #self.first_run = False
 
     def autonomousPeriodic(self) -> None:
         """Empty for now. Handled by command scheduler."""
